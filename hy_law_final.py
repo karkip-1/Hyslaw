@@ -18,7 +18,7 @@ Analyze clinical trial data to identify subjects meeting **Hy's Law criteria**:
 """)
 
 # GitHub CSV URL
-github_csv_url = "https://raw.githubusercontent.com/karkip-1/demo/main/lb.csv"  
+github_csv_url = "https://raw.githubusercontent.com/karkip-1/Hyslaw/main/lb.csv"  
 # Read Dataset from GitHub URL
 try:
     df = pd.read_csv(github_csv_url)
