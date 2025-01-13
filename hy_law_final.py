@@ -9,7 +9,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
-# Title and Description
+# Title and Descriptiong
 st.title("Hy's Law Interactive Dashboard")
 st.markdown("""
 Analyze clinical trial data to identify subjects meeting **Hy's Law criteria**:
