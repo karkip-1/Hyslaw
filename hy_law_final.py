@@ -1,3 +1,10 @@
+#---------------------------------------------------------------------------
+#Program Name   : hy_law_final.py
+#Programmer     : Prafulla Karki
+#Date           : 2025-01-12
+#Purpose        : To create a Streamlit dashboard for visualizing and analyzing
+#                 Hy's Law i.e Subject who meet Hy's law criteria
+#---------------------------------------------------------------------------
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -10,16 +17,17 @@ Analyze clinical trial data to identify subjects meeting **Hy's Law criteria**:
 - Total Bilirubin > 2× ULN
 """)
 
-# File Upload
-uploaded_file = st.sidebar.file_uploader("Upload SDTM.LB Dataset (CSV)", type=["csv"])
-if uploaded_file is None:
-    st.warning("Please upload an SDTM.LB dataset to proceed.")
-    st.stop()
+# GitHub CSV URL
+github_csv_url = "https://raw.githubusercontent.com/karkip-1/demo/main/sdtm_lb_data.csv"  # Update with your actual raw GitHub URL
 
-# Load and Display Dataset
-df = pd.read_csv(uploaded_file)
-st.sidebar.markdown("### Dataset Summary")
-st.sidebar.write(df.describe())
+# Read Dataset from GitHub URL
+try:
+    df = pd.read_csv(github_csv_url)
+    st.sidebar.markdown("### Dataset Summary")
+    st.sidebar.write(df.describe())
+except Exception as e:
+    st.error(f"Error loading the dataset: {e}")
+    st.stop()
 
 # Sidebar: ULN Reference Ranges
 st.sidebar.markdown("### Reference Ranges")
@@ -107,3 +115,4 @@ else:
         subject_data = df[df['USUBJID'] == selected_subject]
         csv = subject_data.to_csv(index=False)
         st.download_button("Download as CSV", data=csv, file_name=f"subject_{selected_subject}_data.csv")
+
